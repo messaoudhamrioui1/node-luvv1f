@@ -6,8 +6,8 @@ const options = {
 var nodemailer = require('nodemailer');
 
 var mailOptions = {
-  from: 'messa200993@gmail.com',
-  to: 'hamriouimessaoud@gmail.com',
+  from: 'messaoud.hamrioui@gmail.com',
+  to: 'messa200993@gmail.com',
   subject: 'Sending Email using Node.js',
   text: 'That was easy!',
 };
@@ -21,7 +21,7 @@ function intervalFunc() {
       secure: true,
       auth: {
         user: 'messaoud.hamrioui@gmail.com',
-        pass: 'Messaoud1993@@',
+        pass: 'Messaoud1993@@@',
       },
     });
     mailOptions.text = res.statusCode;
