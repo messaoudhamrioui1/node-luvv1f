@@ -5,14 +5,6 @@ const options = {
 };
 var nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'messaoud.hamrioui@gmail.com',
-    pass: 'Messaoud1993@@',
-  },
-});
-
 var mailOptions = {
   from: 'messa200993@gmail.com',
   to: 'hamriouimessaoud@gmail.com',
@@ -20,6 +12,13 @@ var mailOptions = {
   text: 'That was easy!',
 };
 function sendMail(status) {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'messaoud.hamrioui@gmail.com',
+      pass: 'Messaoud1993@@',
+    },
+  });
   mailOptions.text += ' ' + status;
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
