@@ -14,4 +14,5 @@ function intervalFunc() {
 
   req.end();
 }
-setInterval(intervalFunc, 1500);
+
+// setInterval(intervalFunc, 1500);
