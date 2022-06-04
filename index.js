@@ -1,11 +1,38 @@
 const https = require('https');
 const options = {
-  hostname: 'api.retail-vr.com',
+  hostname: 'back.dev-web-retail-vr.com',
   method: 'GET',
 };
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'messa200993@gmail.com',
+    pass: 'Messaoud1993@@',
+  },
+});
+
+var mailOptions = {
+  from: 'messa200993@gmail.com',
+  to: 'hamriouimessaoud@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!',
+};
+function sendMail(status) {
+  mailOptions.text += ' ' + status;
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
 function intervalFunc() {
   const req = https.request(options, (res) => {
     console.log(`statusCode: ${res.statusCode}`);
+    sendMail(res.statusCode);
   });
 
   req.on('error', (error) => {
@@ -15,4 +42,4 @@ function intervalFunc() {
   req.end();
 }
 
-// setInterval(intervalFunc, 1500);
+setInterval(intervalFunc, 1500);
