@@ -11,29 +11,27 @@ var mailOptions = {
   subject: 'Sending Email using Node.js',
   text: 'That was easy!',
 };
-function sendMail(status) {
-  var transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: 'messaoud.hamrioui@gmail.com',
-      pass: 'Messaoud1993@@',
-    },
-  });
-  mailOptions.text += ' ' + status;
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-}
+
 function intervalFunc() {
   const req = https.request(options, (res) => {
     console.log(`statusCode: ${res.statusCode}`);
-    sendMail(res.statusCode);
+    var transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'messaoud.hamrioui@gmail.com',
+        pass: 'Messaoud1993@@',
+      },
+    });
+    mailOptions.text = res.statusCode;
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
   });
 
   req.on('error', (error) => {
@@ -43,4 +41,4 @@ function intervalFunc() {
   req.end();
 }
 
-setInterval(intervalFunc, 1500);
+intervalFunc();
