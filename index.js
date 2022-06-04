@@ -1,6 +1,6 @@
 const https = require('https');
 const options = {
-  hostname: 'api.retail-vr.com/',
+  hostname: 'api.retail-vr.com',
   method: 'GET',
 };
 
