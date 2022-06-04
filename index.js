@@ -3,13 +3,15 @@ const options = {
   hostname: 'api.retail-vr.com',
   method: 'GET',
 };
+function intervalFunc() {
+  const req = https.request(options, (res) => {
+    console.log(`statusCode: ${res.statusCode}`);
+  });
 
-const req = https.request(options, (res) => {
-  console.log(`statusCode: ${res.statusCode}`);
-});
+  req.on('error', (error) => {
+    console.error(error);
+  });
 
-req.on('error', (error) => {
-  console.error(error);
-});
-
-req.end();
+  req.end();
+}
+setInterval(intervalFunc, 1500);
